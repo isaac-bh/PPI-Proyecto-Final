@@ -20,15 +20,17 @@
         @endif
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-white dark:text-white/50">
+        <div class="bg-gray-50 text-black/50 dark:text-white/50">
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+                <div class="absolute left-0 right-0 top-0 z-10 m-auto h-[700px] w-[700px] rounded-full bg-blue-700 opacity-20 blur-[100px]"></div>
+
+                <div class="relative h-screen grid place-items-center w-full max-w-2xl px-6 lg:max-w-7xl">
+                    <header class="m-auto grid grid-cols-2 items-center place-items-center gap-2 py-10 lg:grid-cols-3">
                         <div class="flex lg:justify-center lg:col-start-2">
-                            <h2 class="text-4xl font-semibold text-white dark:text-black text-center">Jiran't</h2>
+                            <h2 class="text-7xl mt-20 font-semibold text-white dark:text-black text-center">Jiran't</h2>
                         </div>
                         @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
+                            <nav class="-mx-3 flex flex-1 justify-end absolute top-0 right-0">
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
@@ -57,7 +59,7 @@
                         @endif
                     </header>
 
-                    <main class="mt-6">
+                    <main class="mt-6 max-w-2xl">
                         <h2 class="text-xl font-semibold text-white dark:text-black">Una gran herramienta para tus proyectos</h2>
 
                         <p class="mt-4 text-sm/relaxed text-white dark:text-black">
