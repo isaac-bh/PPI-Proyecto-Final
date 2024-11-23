@@ -9,6 +9,10 @@ class Board extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     // A Board has many Tasks
     public function todo_item()
     {

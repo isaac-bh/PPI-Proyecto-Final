@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Board;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\TodoItem;
 use Livewire\Component;
 
 class Table extends Component
 {
-    protected $listeners = ['saved'];
+    use LivewireAlert;
+
+    protected $listeners = ['saved', 'deleteItem'];
     public $board_id;
+    public $itemToDelete;
 
     public function mount($board_id)
     {
@@ -62,8 +66,19 @@ class Table extends Component
         $item->save();
     }
 
-    public function deleteItem(TodoItem $item)
+    public function deleteItem() {
+        $this->itemToDelete->delete();
+        $this->alert('success', 'Tarea eliminada');
+    }
+
+    public function delete(TodoItem $item)
     {
-        $item->delete();
+        $this->itemToDelete = $item;
+        $this->alert('question', '¿Seguro de eliminar esta tarea?', [
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Confirmar',
+            'timer' => null,
+            'onConfirmed' => 'deleteItem'
+        ]);
     }
 }

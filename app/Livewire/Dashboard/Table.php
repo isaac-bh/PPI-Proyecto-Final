@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Dashboard;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Board;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Table extends Component
 {
-    protected $listeners = ['saved'];
+    use LivewireAlert;
+
+    protected $listeners = ['saved', 'deleteBoard'];
+    public $itemToDelete;
     public $boards;
 
     public function render()
@@ -27,8 +31,19 @@ class Table extends Component
         return view('livewire.dashboard.table');
     }
 
+    public function deleteBoard() {
+        $this->itemToDelete->delete();
+        $this->alert('success', 'Proyecto eliminado');
+    }
+
     public function deleteItem(Board $item)
     {
-        $item->delete();
+        $this->itemToDelete = $item;
+        $this->alert('question', '¿Seguro de eliminar este proyecto?', [
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Confirmar',
+            'timer' => null,
+            'onConfirmed' => 'deleteBoard'
+        ]);
     }
 }

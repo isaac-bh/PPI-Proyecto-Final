@@ -16,4 +16,14 @@ class BoardController extends Controller
             'board' => $board->name
         ]);
     }
+    
+    public function edit($board_id)
+    {
+        $board = Board::select('name')->find($board_id);
+
+        return view('boardEdit', [
+            'board_id' => $board_id,
+            'board' => $board->name
+        ]);
+    }
 }

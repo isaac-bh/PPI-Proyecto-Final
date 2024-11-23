@@ -27,3 +27,7 @@ Route::middleware([
 Route::get('/boards/{id}', [BoardController::class, 'index'])
     ->middleware(['auth:sanctum', 'verified'])
     ->name('board');
+
+Route::get('/boards/{id}/edit', [BoardController::class, 'edit'])
+    ->middleware(['auth:sanctum', 'verified'])
+    ->name('boardEdit');
