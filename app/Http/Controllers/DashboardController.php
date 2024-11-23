@@ -12,6 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        // Los joins estan horribles
         $boards = Board::withCount([
             'todo_item as tasks_todo' => function ($query) {
                 $query->where('status', 'todo');
@@ -23,9 +24,6 @@ class DashboardController extends Controller
                 $query->where('status', 'done');
             },
         ])->where('user_id', auth()->id())->get();
-        // $boards = Board::with('todo_item')
-        //             ->where('user_id', auth()->id())
-        //             ->get();
         return view('dashboard', compact('boards'));
     }
 }

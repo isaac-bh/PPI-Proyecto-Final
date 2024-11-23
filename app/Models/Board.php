@@ -13,7 +13,6 @@ class Board extends Model
         'name',
     ];
 
-    // A Board has many Tasks
     public function todo_item()
     {
         return $this->hasMany(TodoItem::class, 'board_id', 'id');
