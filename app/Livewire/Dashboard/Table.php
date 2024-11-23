@@ -42,7 +42,7 @@ class Table extends Component
         $this->alert('question', '¿Seguro de eliminar este proyecto?', [
             'showConfirmButton' => true,
             'confirmButtonText' => 'Confirmar',
-            'timer' => null,
+            'timer' => 5000,
             'onConfirmed' => 'deleteBoard'
         ]);
     }
