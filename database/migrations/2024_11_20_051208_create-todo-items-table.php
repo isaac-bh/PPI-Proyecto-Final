@@ -13,6 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('boards', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->timestamps();
+        });
+
         Schema::create('todo_items', function (Blueprint $table) {
             $table->id();
             $table->string("name");
@@ -22,6 +29,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -31,6 +39,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('boards');
         Schema::dropIfExists('todo_items');
     }
 };
